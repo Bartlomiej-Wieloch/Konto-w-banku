@@ -10,7 +10,7 @@ namespace Bank
         private bool zablokowane = false;
 
         public string Nazwa { get; } 
-        public decimal Bilans { get; private set; } //Wbrew 7. punktu z kroku 1, musze dać tutaj private set aby testy przeszedły, 
+        public virtual decimal Bilans { get; internal set; } //Wbrew 7. punktu z kroku 1, musze dać tutaj private set aby testy przeszedły, 
         public bool Blokada { get; private set; }   //gdy jest tylko get (do odczytu) nie mogę zmodyfikować wartości za pomocą metod
 
         public Konto (string Klient, decimal bilansNaStart = 0)
@@ -22,7 +22,7 @@ namespace Bank
             Blokada = zablokowane;
         }
 
-        public void Wplata(decimal kwota)
+        public virtual void Wplata(decimal kwota)
         {
             if (Blokada)
                 throw new ArgumentException("Nie można dokonać wpłaty do zablokowanego konta");
@@ -32,7 +32,7 @@ namespace Bank
             Bilans += kwota;
 
         }
-        public void Wyplata(decimal kwota)
+        public virtual void Wyplata(decimal kwota)
         {
             if (Blokada)
                 throw new ArgumentException("Nie można dokonać wypłaty z zablokowanego konta");

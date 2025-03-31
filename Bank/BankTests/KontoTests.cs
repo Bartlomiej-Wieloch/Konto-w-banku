@@ -2,13 +2,13 @@
 using Newtonsoft.Json.Converters;
 
 
-namespace BankTests
+namespace KontoTests
 {
     [TestClass]
-    public sealed class BankTests
+    public sealed class KontoTests
     {
         [TestMethod]
-        public void Konstruktor_PoprawneDane()
+        public void Konto_Konstruktor_PoprawneDane()
         {
             //Arange
             string nazwa = "Bartek";
@@ -23,7 +23,7 @@ namespace BankTests
             Assert.AreEqual(false, km.Blokada); 
         }
         [TestMethod]
-        public void BlokujKonto_KontoOdblokowane_Powodzenie()
+        public void Konto_BlokujKonto_KontoOdblokowane_Powodzenie()
         {
             //Arange
             string nazwa = "Bartek";
@@ -37,7 +37,7 @@ namespace BankTests
             Assert.IsTrue(km.Blokada);
         }
         [TestMethod]
-        public void OdblokujKonto_KontoZablokowane_Powodzenie()
+        public void Konto_OdblokujKonto_KontoZablokowane_Powodzenie()
         {
             //Arange
             string nazwa = "Bartek";
@@ -51,7 +51,7 @@ namespace BankTests
             Assert.IsFalse(km.Blokada);
         }
         [TestMethod]
-        public void Wplata_KwotaDodatnia_SaldoZwiekszaSie()
+        public void Konto_Wplata_KwotaDodatnia_SaldoZwiekszaSie()
         {
             //Arange
             string nazwa = "Bartek";
@@ -65,7 +65,7 @@ namespace BankTests
             Assert.AreEqual(1000, km.Bilans);
         }
         [TestMethod]
-        public void Wplata_KwotaUjemna_Exception()
+        public void Konto_Wplata_KwotaUjemna_Exception()
         {
             //Arange
             string nazwa = "Bartek";
@@ -78,7 +78,7 @@ namespace BankTests
             Assert.ThrowsException<ArgumentException>(() => km.Wplata(-500));
         }
         [TestMethod]
-        public void Wplata_KontoZablokowane_Exception()
+        public void Konto_Wplata_KontoZablokowane_Exception()
         {
             //Arange
             string nazwa = "Bartek";
@@ -92,7 +92,7 @@ namespace BankTests
             Assert.ThrowsException<ArgumentException>(() => km.Wplata(500));
         }
         [TestMethod]
-        public void Wyplata_KwotaDodatnia_SaldoZmniejszaSie()
+        public void Konto_Wyplata_KwotaDodatnia_SaldoZmniejszaSie()
         {
             //Arange
             string nazwa = "Bartek";
@@ -106,7 +106,7 @@ namespace BankTests
             Assert.AreEqual(0, km.Bilans);
         }
         [TestMethod]
-        public void Wyplata_KwotaUjemna_Exception()
+        public void Konto_Wyplata_KwotaUjemna_Exception()
         {
             //Arange
             string nazwa = "Bartek";
@@ -119,7 +119,7 @@ namespace BankTests
             Assert.ThrowsException<ArgumentException>(() => km.Wyplata(-500));
         }
         [TestMethod]
-        public void Wyplata_BrakSrodkow_Exception()
+        public void Konto_Wyplata_BrakSrodkow_Exception()
         {
             //Arange
             string nazwa = "Bartek";
@@ -133,7 +133,7 @@ namespace BankTests
 
         }
         [TestMethod]
-        public void Wyplata_KontoZablokowane_Exception()
+        public void Konto_Wyplata_KontoZablokowane_Exception()
         {
             //Arange
             string nazwa = "Bartek";
