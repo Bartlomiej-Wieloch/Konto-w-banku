@@ -17,7 +17,7 @@ public class KontoPlusTests
         var km = new KontoPlus(nazwa, limit, saldo);
 
         //Assert
-        Assert.AreEqual(limit, km.LimitDebetowy);
+        Assert.AreEqual(limit, km.Limit);
     }
 
     [DataTestMethod]
@@ -35,12 +35,12 @@ public class KontoPlusTests
         km.ZwiekszLimit(wartosc);
 
         //Assert
-        Assert.AreEqual(wartosc + limit, km.LimitDebetowy);
+        Assert.AreEqual(wartosc + limit, km.Limit);
     }
 
     [DataTestMethod]
     [ExpectedException(typeof(ArgumentException))]
-    public void KontoPlus_ZwiekszLimit_ArgumentException()
+    public void KontoPlus_ZwiekszLimitUjemnaWartosc_ArgumentException()
     {
         //Arange
         string nazwa = "Bartek";
@@ -70,7 +70,7 @@ public class KontoPlusTests
         km.ZmniejszLimit(wartosc);
 
         //Assert
-        Assert.AreEqual(limit - wartosc, km.LimitDebetowy);
+        Assert.AreEqual(limit - wartosc, km.Limit);
     }
 
     [DataTestMethod]
@@ -103,7 +103,7 @@ public class KontoPlusTests
         km.ZmniejszLimit(99999999999);
         //Assert
     }
-
+    //ts
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void KontoPlus_Wyplata_ZablokowaneKonto_ArgumentException()
@@ -260,7 +260,7 @@ public class KontoPlusTests
         //Assert
         Assert.IsFalse(km.Blokada);
     }
-
+    //ts
     [TestMethod]
     public void KontoPlus_KontoBlokujeSiePoZejsciuSaldaPonizejZera_PoWplacieKontoOdblokowujeSie_MozliwoscSkorzystaniaZDebetuPrzywrocona()
     {

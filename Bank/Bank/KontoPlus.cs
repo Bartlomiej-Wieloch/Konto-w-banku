@@ -8,11 +8,11 @@ namespace Bank
 {
     public class KontoPlus : Konto
     {
-        public decimal LimitDebetowy { get; private set; }
+        public decimal Limit { get; private set; }
         public override decimal Bilans { get; internal set; }
         public KontoPlus(string Klient, decimal limitDebetowy, decimal bilansNaStart = 0) : base(Klient, bilansNaStart)
         {
-            LimitDebetowy = limitDebetowy;
+            Limit = limitDebetowy;
         }
 
         public void ZwiekszLimit(decimal wartosc)
@@ -20,18 +20,18 @@ namespace Bank
             if (wartosc < 0)
                 throw new ArgumentException("Nie można przetworzyć ujemnej wartości");
 
-            LimitDebetowy += wartosc;
+            Limit += wartosc;
         }
 
         public void ZmniejszLimit(decimal wartosc)
         {
-            if (LimitDebetowy - wartosc < 0)
+            if (Limit - wartosc < 0)
                 throw new ArgumentException("Nie można zmniejszyć limitu debetowego do wartosci ujemnej");
 
             if (wartosc < 0)
                 throw new ArgumentException("Nie można przetworzyć ujemnej wartości");
 
-            LimitDebetowy -= wartosc;
+            Limit -= wartosc;
         }
 
         public override void Wyplata(decimal kwota)
@@ -40,7 +40,7 @@ namespace Bank
                 throw new ArgumentException("Nie można dokonać wypłaty z zablokowanego konta");
             if (kwota < 0)
                 throw new ArgumentException("Nie można dokonać ujemnej wypłaty");
-            if (Bilans + LimitDebetowy < kwota)
+            if (Bilans + Limit < kwota)
                 throw new ArgumentException("Nie można wypłacić kwoty większej niż dostępne środki + limit debetowy.");
 
             Bilans -= kwota;
