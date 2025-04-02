@@ -92,8 +92,6 @@ namespace Bank
             if (_limitDebetowy - wartosc < 0)
                 throw new ArgumentException("Nie można zmniejszyć limitu debetowego do wartosci ujemnej");
 
-
-
             _limitDebetowy -= wartosc;
         }
     }
